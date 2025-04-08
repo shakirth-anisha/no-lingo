@@ -1,0 +1,415 @@
+[
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "util",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "util",
+        "description": "util",
+        "detail": "util",
+        "documentation": {}
+    },
+    {
+        "label": "svm_train",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "svm_train",
+        "description": "svm_train",
+        "detail": "svm_train",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "norm",
+        "importPath": "numpy.linalg",
+        "description": "numpy.linalg",
+        "isExtraImport": true,
+        "detail": "numpy.linalg",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "nothing",
+        "kind": 2,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "def nothing(x) :\n    pass\n#Get the biggest Controur\ndef getMaxContour(contours,minArea=200):\n    maxC=None\n    maxArea=minArea\n    for cnt in contours:\n        area=cv2.contourArea(cnt)\n        if(area>maxArea):\n            maxArea=area",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "getMaxContour",
+        "kind": 2,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "def getMaxContour(contours,minArea=200):\n    maxC=None\n    maxArea=minArea\n    for cnt in contours:\n        area=cv2.contourArea(cnt)\n        if(area>maxArea):\n            maxArea=area\n            maxC=cnt\n    return maxC\n# cv2.namedWindow('trackbar')",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\timg_ycrcb",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\timg_ycrcb = cv2.cvtColor(img1, cv2.COLOR_BGR2YCR_CB)\n\tblur = cv2.GaussianBlur(img_ycrcb,(11,11),0)\n\t# skin_ycrcb_min = np.array((Y_min,Cr_min,Cb_min))\n\t# skin_ycrcb_max = np.array((Y_max,Cr_max,Cb_max))\n\tskin_ycrcb_min = np.array((0, 138, 67))\n\tskin_ycrcb_max = np.array((255, 173, 133))\n\tmask = cv2.inRange(blur, skin_ycrcb_min, skin_ycrcb_max)\n\t#gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)\n\t#ret,mask = cv2.threshold(gray.copy(),20,255,cv2.THRESH_BINARY)\n\tcontours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\tblur",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\tblur = cv2.GaussianBlur(img_ycrcb,(11,11),0)\n\t# skin_ycrcb_min = np.array((Y_min,Cr_min,Cb_min))\n\t# skin_ycrcb_max = np.array((Y_max,Cr_max,Cb_max))\n\tskin_ycrcb_min = np.array((0, 138, 67))\n\tskin_ycrcb_max = np.array((255, 173, 133))\n\tmask = cv2.inRange(blur, skin_ycrcb_min, skin_ycrcb_max)\n\t#gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)\n\t#ret,mask = cv2.threshold(gray.copy(),20,255,cv2.THRESH_BINARY)\n\tcontours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)\n\tcnt=getMaxContour(contours,4000)",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\tskin_ycrcb_min",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\tskin_ycrcb_min = np.array((0, 138, 67))\n\tskin_ycrcb_max = np.array((255, 173, 133))\n\tmask = cv2.inRange(blur, skin_ycrcb_min, skin_ycrcb_max)\n\t#gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)\n\t#ret,mask = cv2.threshold(gray.copy(),20,255,cv2.THRESH_BINARY)\n\tcontours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)\n\tcnt=getMaxContour(contours,4000)\n\tif cnt!=None:\n\t\tx,y,w,h = cv2.boundingRect(cnt)\n\t\timgT=img1[y:y+h,x:x+w]",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\tskin_ycrcb_max",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\tskin_ycrcb_max = np.array((255, 173, 133))\n\tmask = cv2.inRange(blur, skin_ycrcb_min, skin_ycrcb_max)\n\t#gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)\n\t#ret,mask = cv2.threshold(gray.copy(),20,255,cv2.THRESH_BINARY)\n\tcontours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)\n\tcnt=getMaxContour(contours,4000)\n\tif cnt!=None:\n\t\tx,y,w,h = cv2.boundingRect(cnt)\n\t\timgT=img1[y:y+h,x:x+w]\n\t\timgT=cv2.bitwise_and(imgT,imgT,mask=mask[y:y+h,x:x+w])",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\tmask",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\tmask = cv2.inRange(blur, skin_ycrcb_min, skin_ycrcb_max)\n\t#gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)\n\t#ret,mask = cv2.threshold(gray.copy(),20,255,cv2.THRESH_BINARY)\n\tcontours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)\n\tcnt=getMaxContour(contours,4000)\n\tif cnt!=None:\n\t\tx,y,w,h = cv2.boundingRect(cnt)\n\t\timgT=img1[y:y+h,x:x+w]\n\t\timgT=cv2.bitwise_and(imgT,imgT,mask=mask[y:y+h,x:x+w])\n\t\timgT=cv2.resize(imgT,(200,200))",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\t#ret,mask",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\t#ret,mask = cv2.threshold(gray.copy(),20,255,cv2.THRESH_BINARY)\n\tcontours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)\n\tcnt=getMaxContour(contours,4000)\n\tif cnt!=None:\n\t\tx,y,w,h = cv2.boundingRect(cnt)\n\t\timgT=img1[y:y+h,x:x+w]\n\t\timgT=cv2.bitwise_and(imgT,imgT,mask=mask[y:y+h,x:x+w])\n\t\timgT=cv2.resize(imgT,(200,200))\n\t\tcv2.imshow('Trainer',imgT)\n\tcv2.imshow('Frame',img)",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\tcontours,hierarchy",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\tcontours,hierarchy = cv2.findContours(mask.copy(),cv2.RETR_TREE,cv2.CHAIN_APPROX_SIMPLE)\n\tcnt=getMaxContour(contours,4000)\n\tif cnt!=None:\n\t\tx,y,w,h = cv2.boundingRect(cnt)\n\t\timgT=img1[y:y+h,x:x+w]\n\t\timgT=cv2.bitwise_and(imgT,imgT,mask=mask[y:y+h,x:x+w])\n\t\timgT=cv2.resize(imgT,(200,200))\n\t\tcv2.imshow('Trainer',imgT)\n\tcv2.imshow('Frame',img)\n\tcv2.imshow('Thresh',mask)",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tx,y,w,h",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\t\tx,y,w,h = cv2.boundingRect(cnt)\n\t\timgT=img1[y:y+h,x:x+w]\n\t\timgT=cv2.bitwise_and(imgT,imgT,mask=mask[y:y+h,x:x+w])\n\t\timgT=cv2.resize(imgT,(200,200))\n\t\tcv2.imshow('Trainer',imgT)\n\tcv2.imshow('Frame',img)\n\tcv2.imshow('Thresh',mask)\n\tk = 0xFF & cv2.waitKey(10)\n\tif k == 27:\n\t\tbreak",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "\tk",
+        "kind": 5,
+        "importPath": "TrainData.creatingDataset",
+        "description": "TrainData.creatingDataset",
+        "peekOfCode": "\tk = 0xFF & cv2.waitKey(10)\n\tif k == 27:\n\t\tbreak\n\tif k == 13:\n\t\tname=str(unichr(i+64))+\"_\"+str(j)+\".jpg\"\n\t\tcv2.imwrite(name,imgT)\n\t\tif(j<400):\n\t\t\tj+=1\n\t\telse:\n\t\t\twhile(0xFF & cv2.waitKey(0)!=ord('n')):",
+        "detail": "TrainData.creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "model = st.trainSVM(17)\ncam = int(input(\"Enter Camera number: \"))\ncap = cv2.VideoCapture(cam)\nfont = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "cam",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "cam = int(input(\"Enter Camera number: \"))\ncap = cv2.VideoCapture(cam)\nfont = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "cap",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "cap = cv2.VideoCapture(cam)\nfont = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "font",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "font = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:\n        break",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "text",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "text = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:\n        break\n    img = cv2.flip(img, 1) ",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "temp",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "temp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:\n        break\n    img = cv2.flip(img, 1) \n    # Selection area",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "previouslabel",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "previouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:\n        break\n    img = cv2.flip(img, 1) \n    # Selection area\n    cv2.rectangle(img, (700, 100), (1400, 600), (0, 255, 0), 3)  ",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "previousText",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "previousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:\n        break\n    img = cv2.flip(img, 1) \n    # Selection area\n    cv2.rectangle(img, (700, 100), (1400, 600), (0, 255, 0), 3)  \n    img1 = img[100:600, 700:1400]",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "label",
+        "kind": 5,
+        "importPath": "ASL",
+        "description": "ASL",
+        "peekOfCode": "label = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:\n        break\n    img = cv2.flip(img, 1) \n    # Selection area\n    cv2.rectangle(img, (700, 100), (1400, 600), (0, 255, 0), 3)  \n    img1 = img[100:600, 700:1400]\n    img_ycrcb = cv2.cvtColor(img1, cv2.COLOR_BGR2YCR_CB)",
+        "detail": "ASL",
+        "documentation": {}
+    },
+    {
+        "label": "getMaxContour",
+        "kind": 2,
+        "importPath": "bounded",
+        "description": "bounded",
+        "peekOfCode": "def getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:\n            maxArea = area\n            maxC = cnt\n    return maxC\nwhile cap.isOpened():",
+        "detail": "bounded",
+        "documentation": {}
+    },
+    {
+        "label": "cam",
+        "kind": 5,
+        "importPath": "bounded",
+        "description": "bounded",
+        "peekOfCode": "cam = int(input(\"Enter Camera Index: \"))\ncap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:",
+        "detail": "bounded",
+        "documentation": {}
+    },
+    {
+        "label": "cap",
+        "kind": 5,
+        "importPath": "bounded",
+        "description": "bounded",
+        "peekOfCode": "cap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)",
+        "detail": "bounded",
+        "documentation": {}
+    },
+    {
+        "label": "i",
+        "kind": 5,
+        "importPath": "bounded",
+        "description": "bounded",
+        "peekOfCode": "i = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:",
+        "detail": "bounded",
+        "documentation": {}
+    },
+    {
+        "label": "j",
+        "kind": 5,
+        "importPath": "bounded",
+        "description": "bounded",
+        "peekOfCode": "j = 201  # Starting image index\nname = \"\"\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:\n            maxArea = area",
+        "detail": "bounded",
+        "documentation": {}
+    },
+    {
+        "label": "name",
+        "kind": 5,
+        "importPath": "bounded",
+        "description": "bounded",
+        "peekOfCode": "name = \"\"\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:\n            maxArea = area\n            maxC = cnt",
+        "detail": "bounded",
+        "documentation": {}
+    },
+    {
+        "label": "nothing",
+        "kind": 2,
+        "importPath": "creatingDataset",
+        "description": "creatingDataset",
+        "peekOfCode": "def nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:\n            maxArea = area",
+        "detail": "creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "getMaxContour",
+        "kind": 2,
+        "importPath": "creatingDataset",
+        "description": "creatingDataset",
+        "peekOfCode": "def getMaxContour(contours, minArea=200):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:\n            maxArea = area\n            maxC = cnt\n    return maxC\nwhile cap.isOpened():",
+        "detail": "creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "cam",
+        "kind": 5,
+        "importPath": "creatingDataset",
+        "description": "creatingDataset",
+        "peekOfCode": "cam = int(input(\"Enter Camera Index: \"))\ncap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\ndef nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None",
+        "detail": "creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "cap",
+        "kind": 5,
+        "importPath": "creatingDataset",
+        "description": "creatingDataset",
+        "peekOfCode": "cap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\ndef nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None\n    maxArea = minArea",
+        "detail": "creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "i",
+        "kind": 5,
+        "importPath": "creatingDataset",
+        "description": "creatingDataset",
+        "peekOfCode": "i = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\ndef nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:",
+        "detail": "creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "j",
+        "kind": 5,
+        "importPath": "creatingDataset",
+        "description": "creatingDataset",
+        "peekOfCode": "j = 201  # Starting image index\nname = \"\"\ndef nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)",
+        "detail": "creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "name",
+        "kind": 5,
+        "importPath": "creatingDataset",
+        "description": "creatingDataset",
+        "peekOfCode": "name = \"\"\ndef nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:",
+        "detail": "creatingDataset",
+        "documentation": {}
+    },
+    {
+        "label": "preprocess_hog",
+        "kind": 2,
+        "importPath": "svm_train",
+        "description": "svm_train",
+        "peekOfCode": "def preprocess_hog(images):\n    samples = []\n    for img in images:\n        img = cv2.equalizeHist(img)  \n        gx = cv2.Sobel(img, cv2.CV_32F, 1, 0, ksize=3)\n        gy = cv2.Sobel(img, cv2.CV_32F, 0, 1, ksize=3)\n        mag, ang = cv2.cartToPolar(gx, gy)\n        bin_n = 16\n        bin_cells = np.int32(bin_n * ang / (2 * np.pi))\n        mag_cells = mag",
+        "detail": "svm_train",
+        "documentation": {}
+    },
+    {
+        "label": "trainSVM",
+        "kind": 2,
+        "importPath": "svm_train",
+        "description": "svm_train",
+        "peekOfCode": "def trainSVM(num_classes):\n    imgs, labels = [], []\n    for i in range(65, 65 + num_classes):\n        for j in range(1, 201):  \n            img_path = f'TrainData/{chr(i)}_{j}.jpg'\n            if os.path.exists(img_path):\n                img = cv2.imread(img_path, 0)\n                if img is not None:\n                    imgs.append(img)\n                    labels.append(i - 64)",
+        "detail": "svm_train",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "svm_train",
+        "description": "svm_train",
+        "peekOfCode": "def predict(model, img):\n    samples = preprocess_hog([img])\n    return model.predict(samples)[1].ravel()",
+        "detail": "svm_train",
+        "documentation": {}
+    },
+    {
+        "label": "getMaxContour",
+        "kind": 2,
+        "importPath": "util",
+        "description": "util",
+        "peekOfCode": "def getMaxContour(contours, minArea=5000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)\n        if area > maxArea:\n            maxArea = area\n            maxC = cnt\n    return maxC\nprevious_text = \"\"",
+        "detail": "util",
+        "documentation": {}
+    },
+    {
+        "label": "getGestureImg",
+        "kind": 2,
+        "importPath": "util",
+        "description": "util",
+        "peekOfCode": "def getGestureImg(cnt, img, mask, model):\n    global previous_text\n    x, y, w, h = cv2.boundingRect(cnt)\n    padding = 20  \n    x, y = max(0, x - padding), max(0, y - padding)\n    w, h = min(img.shape[1] - x, w + 2 * padding), min(img.shape[0] - y, h + 2 * padding)\n    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)  \n    imgT = img[y:y + h, x:x + w]\n    imgT = cv2.bitwise_and(imgT, imgT, mask=mask[y:y + h, x:x + w])\n    imgT = cv2.resize(imgT, (200, 200))",
+        "detail": "util",
+        "documentation": {}
+    },
+    {
+        "label": "previous_text",
+        "kind": 5,
+        "importPath": "util",
+        "description": "util",
+        "peekOfCode": "previous_text = \"\"\ndef getGestureImg(cnt, img, mask, model):\n    global previous_text\n    x, y, w, h = cv2.boundingRect(cnt)\n    padding = 20  \n    x, y = max(0, x - padding), max(0, y - padding)\n    w, h = min(img.shape[1] - x, w + 2 * padding), min(img.shape[0] - y, h + 2 * padding)\n    cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)  \n    imgT = img[y:y + h, x:x + w]\n    imgT = cv2.bitwise_and(imgT, imgT, mask=mask[y:y + h, x:x + w])",
+        "detail": "util",
+        "documentation": {}
+    }
+]
