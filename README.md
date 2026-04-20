@@ -85,6 +85,15 @@ To run the application:
   python ASL.py
   ```
 
+For Raspberry Pi 5 + Camera Module 3, you can use Picamera2 with the `--raspi` flag:
+
+  ```bash
+  sudo apt install python3-picamera2
+  python ASL.py --raspi
+  python creatingDataset.py --raspi
+  python bounded.py --raspi
+  ```
+
 ---
 
 ⬆ [Back to Top](#no-lingo)

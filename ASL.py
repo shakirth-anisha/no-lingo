@@ -3,11 +3,25 @@ import numpy as np
 import util as ut
 import svm_train as st
 import re
+import argparse
+from camera_capture import CameraCapture
 
 model = st.trainSVM(17)
 
-cam = int(input("Enter Camera number: "))
-cap = cv2.VideoCapture(cam)
+parser = argparse.ArgumentParser()
+parser.add_argument("--raspi", action="store_true", help="Use Picamera2 backend (Raspberry Pi camera)")
+parser.add_argument("--cam", type=int, default=None, help="OpenCV camera index (ignored with --raspi)")
+args = parser.parse_args()
+
+if args.raspi:
+    cap = CameraCapture(use_raspi=True)
+else:
+    cam = args.cam if args.cam is not None else int(input("Enter Camera number: "))
+    cap = CameraCapture(cam_index=cam)
+
+if not cap.isOpened():
+    raise RuntimeError("Unable to open camera stream.")
+
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 text = " "

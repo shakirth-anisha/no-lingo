@@ -1,0 +1,4 @@
+numpy
+opencv-python
+# Optional: required only when using --raspi on Raspberry Pi
+picamera2

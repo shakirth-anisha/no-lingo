@@ -45,6 +45,39 @@
         "documentation": {}
     },
     {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "CameraCapture",
+        "importPath": "camera_capture",
+        "description": "camera_capture",
+        "isExtraImport": true,
+        "detail": "camera_capture",
+        "documentation": {}
+    },
+    {
+        "label": "CameraCapture",
+        "importPath": "camera_capture",
+        "description": "camera_capture",
+        "isExtraImport": true,
+        "detail": "camera_capture",
+        "documentation": {}
+    },
+    {
+        "label": "CameraCapture",
+        "importPath": "camera_capture",
+        "description": "camera_capture",
+        "isExtraImport": true,
+        "detail": "camera_capture",
+        "documentation": {}
+    },
+    {
         "label": "norm",
         "importPath": "numpy.linalg",
         "description": "numpy.linalg",
@@ -165,25 +198,25 @@
         "kind": 5,
         "importPath": "ASL",
         "description": "ASL",
-        "peekOfCode": "model = st.trainSVM(17)\ncam = int(input(\"Enter Camera number: \"))\ncap = cv2.VideoCapture(cam)\nfont = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():",
+        "peekOfCode": "model = st.trainSVM(17)\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--raspi\", action=\"store_true\", help=\"Use Picamera2 backend (Raspberry Pi camera)\")\nparser.add_argument(\"--cam\", type=int, default=None, help=\"OpenCV camera index (ignored with --raspi)\")\nargs = parser.parse_args()\nif args.raspi:\n    cap = CameraCapture(use_raspi=True)\nelse:\n    cam = args.cam if args.cam is not None else int(input(\"Enter Camera number: \"))\n    cap = CameraCapture(cam_index=cam)",
         "detail": "ASL",
         "documentation": {}
     },
     {
-        "label": "cam",
+        "label": "parser",
         "kind": 5,
         "importPath": "ASL",
         "description": "ASL",
-        "peekOfCode": "cam = int(input(\"Enter Camera number: \"))\ncap = cv2.VideoCapture(cam)\nfont = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()",
+        "peekOfCode": "parser = argparse.ArgumentParser()\nparser.add_argument(\"--raspi\", action=\"store_true\", help=\"Use Picamera2 backend (Raspberry Pi camera)\")\nparser.add_argument(\"--cam\", type=int, default=None, help=\"OpenCV camera index (ignored with --raspi)\")\nargs = parser.parse_args()\nif args.raspi:\n    cap = CameraCapture(use_raspi=True)\nelse:\n    cam = args.cam if args.cam is not None else int(input(\"Enter Camera number: \"))\n    cap = CameraCapture(cam_index=cam)\nif not cap.isOpened():",
         "detail": "ASL",
         "documentation": {}
     },
     {
-        "label": "cap",
+        "label": "args",
         "kind": 5,
         "importPath": "ASL",
         "description": "ASL",
-        "peekOfCode": "cap = cv2.VideoCapture(cam)\nfont = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"\ntemp = 0\npreviouslabel = None\npreviousText = \" \"\nlabel = None\nwhile cap.isOpened():\n    ret, img = cap.read()\n    if not ret:",
+        "peekOfCode": "args = parser.parse_args()\nif args.raspi:\n    cap = CameraCapture(use_raspi=True)\nelse:\n    cam = args.cam if args.cam is not None else int(input(\"Enter Camera number: \"))\n    cap = CameraCapture(cam_index=cam)\nif not cap.isOpened():\n    raise RuntimeError(\"Unable to open camera stream.\")\nfont = cv2.FONT_HERSHEY_SIMPLEX\ntext = \" \"",
         "detail": "ASL",
         "documentation": {}
     },
@@ -251,20 +284,20 @@
         "documentation": {}
     },
     {
-        "label": "cam",
+        "label": "parser",
         "kind": 5,
         "importPath": "bounded",
         "description": "bounded",
-        "peekOfCode": "cam = int(input(\"Enter Camera Index: \"))\ncap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:",
+        "peekOfCode": "parser = argparse.ArgumentParser()\nparser.add_argument(\"--raspi\", action=\"store_true\", help=\"Use Picamera2 backend (Raspberry Pi camera)\")\nparser.add_argument(\"--cam\", type=int, default=None, help=\"OpenCV camera index (ignored with --raspi)\")\nargs = parser.parse_args()\nif args.raspi:\n    cap = CameraCapture(use_raspi=True)\nelse:\n    cam = args.cam if args.cam is not None else int(input(\"Enter Camera Index: \"))\n    cap = CameraCapture(cam_index=cam)\nif not cap.isOpened():",
         "detail": "bounded",
         "documentation": {}
     },
     {
-        "label": "cap",
+        "label": "args",
         "kind": 5,
         "importPath": "bounded",
         "description": "bounded",
-        "peekOfCode": "cap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=4000):\n    maxC = None\n    maxArea = minArea\n    for cnt in contours:\n        area = cv2.contourArea(cnt)",
+        "peekOfCode": "args = parser.parse_args()\nif args.raspi:\n    cap = CameraCapture(use_raspi=True)\nelse:\n    cam = args.cam if args.cam is not None else int(input(\"Enter Camera Index: \"))\n    cap = CameraCapture(cam_index=cam)\nif not cap.isOpened():\n    raise RuntimeError(\"Unable to open camera stream.\")\ni = 16  # Starting class index\nj = 201  # Starting image index",
         "detail": "bounded",
         "documentation": {}
     },
@@ -296,6 +329,15 @@
         "documentation": {}
     },
     {
+        "label": "CameraCapture",
+        "kind": 6,
+        "importPath": "camera_capture",
+        "description": "camera_capture",
+        "peekOfCode": "class CameraCapture:\n    def __init__(self, use_raspi=False, cam_index=0, frame_size=(1640, 1232)):\n        self.use_raspi = use_raspi\n        self.cap = None\n        self.picam2 = None\n        self._opened = False\n        if self.use_raspi:\n            try:\n                from picamera2 import Picamera2\n            except ImportError as exc:",
+        "detail": "camera_capture",
+        "documentation": {}
+    },
+    {
         "label": "nothing",
         "kind": 2,
         "importPath": "creatingDataset",
@@ -314,20 +356,20 @@
         "documentation": {}
     },
     {
-        "label": "cam",
+        "label": "parser",
         "kind": 5,
         "importPath": "creatingDataset",
         "description": "creatingDataset",
-        "peekOfCode": "cam = int(input(\"Enter Camera Index: \"))\ncap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\ndef nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None",
+        "peekOfCode": "parser = argparse.ArgumentParser()\nparser.add_argument(\"--raspi\", action=\"store_true\", help=\"Use Picamera2 backend (Raspberry Pi camera)\")\nparser.add_argument(\"--cam\", type=int, default=None, help=\"OpenCV camera index (ignored with --raspi)\")\nargs = parser.parse_args()\nif args.raspi:\n    cap = CameraCapture(use_raspi=True)\nelse:\n    cam = args.cam if args.cam is not None else int(input(\"Enter Camera Index: \"))\n    cap = CameraCapture(cam_index=cam)\nif not cap.isOpened():",
         "detail": "creatingDataset",
         "documentation": {}
     },
     {
-        "label": "cap",
+        "label": "args",
         "kind": 5,
         "importPath": "creatingDataset",
         "description": "creatingDataset",
-        "peekOfCode": "cap = cv2.VideoCapture(cam)\ni = 16  # Starting class index\nj = 201  # Starting image index\nname = \"\"\ndef nothing(x):\n    pass\n# Function to get the largest contour above a certain area threshold\ndef getMaxContour(contours, minArea=200):\n    maxC = None\n    maxArea = minArea",
+        "peekOfCode": "args = parser.parse_args()\nif args.raspi:\n    cap = CameraCapture(use_raspi=True)\nelse:\n    cam = args.cam if args.cam is not None else int(input(\"Enter Camera Index: \"))\n    cap = CameraCapture(cam_index=cam)\nif not cap.isOpened():\n    raise RuntimeError(\"Unable to open camera stream.\")\ni = 16  # Starting class index\nj = 201  # Starting image index",
         "detail": "creatingDataset",
         "documentation": {}
     },

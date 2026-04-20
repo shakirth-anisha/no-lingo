@@ -1,9 +1,22 @@
 import cv2
 import numpy as np
+import argparse
+from camera_capture import CameraCapture
 
-# Get camera input
-cam = int(input("Enter Camera Index: "))
-cap = cv2.VideoCapture(cam)
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--raspi", action="store_true", help="Use Picamera2 backend (Raspberry Pi camera)")
+parser.add_argument("--cam", type=int, default=None, help="OpenCV camera index (ignored with --raspi)")
+args = parser.parse_args()
+
+if args.raspi:
+    cap = CameraCapture(use_raspi=True)
+else:
+    cam = args.cam if args.cam is not None else int(input("Enter Camera Index: "))
+    cap = CameraCapture(cam_index=cam)
+
+if not cap.isOpened():
+    raise RuntimeError("Unable to open camera stream.")
 
 i = 16  # Starting class index
 j = 201  # Starting image index
@@ -24,6 +37,8 @@ while cap.isOpened():
     ret, img = cap.read()
     if not ret:
         break  # Exit loop if camera fails
+
+    imgT = None
     
     img = cv2.flip(img, 1)  # Ensures correct orientation
 
@@ -75,6 +90,9 @@ while cap.isOpened():
     if k == 27:  # Exit on ESC key
         break
     if k == 13:  # Save image on Enter key
+        if imgT is None:
+            print("No hand contour detected yet; nothing to save.")
+            continue
         name = f"TrainData/{chr(i+64)}_{j}.jpg"  
         cv2.imwrite(name, imgT)
         print(f"Saved: {name}")
